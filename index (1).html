@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Шеф Doner — Тәуке хан даңғылы, 82, Шымкент</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Bebas+Neue&family=Manrope:wght@400;500;700&display=swap');
+
+:root{
+  --char: #1c1613;
+  --char-2: #241b17;
+  --flame: #e2531f;
+  --flame-2: #ff7a3d;
+  --mustard: #f0a93a;
+  --cream: #f4ead9;
+  --herb: #5c7a4e;
+  --line: rgba(244,234,217,0.14);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+body{
+  background: var(--char);
+  color: var(--cream);
+  font-family: 'Manrope', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  position: relative;
+  padding: 64px 24px 90px;
+  background:
+    radial-gradient(circle at 85% -10%, rgba(226,83,31,0.35), transparent 55%),
+    radial-gradient(circle at 10% 110%, rgba(240,169,58,0.18), transparent 50%),
+    var(--char);
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow{
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--mustard);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.eyebrow::before{
+  content:'';
+  width: 26px; height: 2px;
+  background: var(--flame);
+}
+
+.hero-grid{
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+h1.brand{
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(58px, 9vw, 118px);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  color: var(--cream);
+}
+h1.brand span{
+  display:block;
+  color: var(--flame-2);
+  -webkit-text-stroke: 1.5px var(--flame-2);
+}
+
+.tagline{
+  font-size: 17px;
+  color: rgba(244,234,217,0.75);
+  max-width: 460px;
+  margin-top: 18px;
+  line-height: 1.55;
+}
+
+.hero-meta{
+  display:flex;
+  gap: 14px;
+  margin-top: 34px;
+  flex-wrap: wrap;
+}
+
+.pill{
+  font-family:'Oswald', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.pill.rating{ background: var(--mustard); color: var(--char); border-color: var(--mustard); font-weight:700;}
+.pill.closed{ color: var(--flame-2); border-color: rgba(226,83,31,0.4);}
+.dot{width:6px;height:6px;border-radius:50%;background: var(--flame-2);}
+
+/* rotating skewer signature element */
+.skewer-wrap{
+  position: relative;
+  height: 340px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.skewer-rod{
+  position:absolute;
+  width: 10px;
+  height: 300px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #6b6b6b, #d8d8d8 45%, #6b6b6b);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+.logo-spin{
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  overflow: hidden;
+  animation: spin 2.4s ease-in-out infinite alternate;
+  box-shadow: 0 0 0 6px rgba(226,83,31,0.25), 0 20px 50px rgba(0,0,0,0.6);
+  background: #000;
+}
+.logo-spin img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (prefers-reduced-motion: reduce){
+  .logo-spin{ animation: none; }
+}
+.flame-glow{
+  position:absolute;
+  bottom: -10px; left:50%;
+  transform: translateX(-50%);
+  width: 220px; height: 70px;
+  background: radial-gradient(ellipse at center, rgba(226,83,31,0.55), transparent 70%);
+  filter: blur(4px);
+}
+@keyframes spin{ from{ transform: translateY(-16px);} to{ transform: translateY(16px);} }
+
+/* ---------- SHOWCASE ---------- */
+.showcase{ padding: 60px 24px 20px; max-width: 1080px; margin: 0 auto;}
+.showcase-grid{
+  display:grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 48px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 36px;
+  background: linear-gradient(150deg, rgba(226,83,31,0.08), transparent 60%);
+}
+.showcase-art{ width: 100%; }
+.showcase-art svg{ width: 100%; height: auto; display:block; filter: drop-shadow(0 18px 30px rgba(0,0,0,0.45)); }
+.showcase-text .section-title{ margin: 10px 0 16px; }
+.showcase-text .tagline{ max-width: none; }
+
+/* ---------- SCROLL REVEAL (perspective) ---------- */
+.reveal{
+  opacity: 0;
+  transform: perspective(1000px) rotateX(8deg) translateY(60px) scale(0.97);
+  transform-origin: top center;
+  transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+  will-change: transform, opacity;
+}
+.reveal.in-view{
+  opacity: 1;
+  transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- SECTION SHELLS ---------- */
+section{ padding: 70px 24px; max-width: 1080px; margin: 0 auto;}
+.section-head{
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+  margin-bottom: 34px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.section-title{
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(34px, 5vw, 52px);
+  letter-spacing: 0.01em;
+}
+.section-note{
+  font-family:'Oswald', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mustard);
+}
+
+/* ---------- MENU ---------- */
+.menu-list{
+  display: grid;
+  gap: 0;
+}
+.menu-item{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 4px;
+  border-bottom: 1px dashed var(--line);
+  gap: 16px;
+  transition: background 0.2s ease;
+}
+.menu-item.active{ background: rgba(226,83,31,0.07); }
+.menu-item:hover{ background: rgba(226,83,31,0.06); }
+.menu-name{
+  font-family:'Oswald', sans-serif;
+  font-size: 19px;
+  font-weight: 500;
+  flex: 1.4;
+}
+.menu-name small{
+  display:block;
+  font-family:'Manrope', sans-serif;
+  font-size: 12.5px;
+  color: rgba(244,234,217,0.5);
+  margin-top: 3px;
+  font-weight: 400;
+}
+.menu-dots{
+  flex:1;
+  border-bottom: 1px dotted rgba(244,234,217,0.2);
+  margin-bottom: 6px;
+}
+.menu-price{
+  font-family:'Oswald', sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--flame-2);
+  white-space: nowrap;
+}
+.badge-hit{
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  background: var(--herb);
+  color: var(--cream);
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+.qty-controls{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  min-width: 96px;
+  justify-content: flex-end;
+}
+.qty-btn{
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--cream);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.qty-btn:hover{ background: var(--flame); border-color: var(--flame); color: var(--char); }
+.qty-btn:focus-visible{ outline: 2px solid var(--mustard); outline-offset: 2px; }
+.qty-count{
+  font-family:'Oswald', sans-serif;
+  font-size: 16px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* ---------- CART BAR ---------- */
+.cart-bar{
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  transform: translateY(120%);
+  transition: transform 0.25s ease;
+  background: var(--char-2);
+  border-top: 1px solid var(--line);
+  padding: 16px 24px;
+  z-index: 40;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+}
+.cart-bar.visible{ transform: translateY(0); }
+.cart-bar-inner{
+  max-width: 1080px;
+  margin: 0 auto;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.cart-summary{
+  font-family:'Oswald', sans-serif;
+  font-size: 15px;
+}
+.cart-summary strong{ color: var(--flame-2); }
+
+/* ---------- CHECKOUT MODAL ---------- */
+.checkout-overlay{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.65);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  padding: 20px;
+}
+.checkout-overlay.visible{ opacity: 1; pointer-events: auto; }
+.checkout-modal{
+  background: var(--char-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 420px;
+  width: 100%;
+  max-height: 82vh;
+  overflow-y: auto;
+}
+.checkout-modal h3{
+  font-family:'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+.checkout-list{ display:flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.checkout-row{
+  display:flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  color: rgba(244,234,217,0.85);
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 8px;
+}
+.checkout-total{
+  font-family:'Oswald', sans-serif;
+  font-size: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  margin-bottom: 14px;
+}
+.checkout-total strong{ color: var(--flame-2); }
+.checkout-note{
+  font-size: 12.5px;
+  color: rgba(244,234,217,0.55);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.checkout-actions{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.checkout-actions .btn{ flex: 1; justify-content: center; text-align:center; }
+
+/* ---------- CONTACT / MAP STRIP ---------- */
+.info-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.info-card{
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  background: linear-gradient(160deg, rgba(226,83,31,0.05), transparent);
+}
+.info-card h3{
+  font-family:'Oswald', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mustard);
+  margin-bottom: 10px;
+}
+.info-card p{ font-size: 15px; line-height: 1.6; color: rgba(244,234,217,0.85);}
+.info-card a{ color: var(--flame-2); text-decoration: none; border-bottom: 1px solid rgba(255,122,61,0.4);}
+.info-card a:hover{ border-color: var(--flame-2);}
+
+/* ---------- CTA STRIP ---------- */
+.cta-strip{
+  display:flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.btn{
+  font-family:'Oswald', sans-serif;
+  letter-spacing: 0.04em;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 15px 26px;
+  border-radius: 100px;
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+  transition: transform 0.15s ease;
+}
+.btn:focus-visible{ outline: 2px solid var(--mustard); outline-offset: 3px; }
+.btn:hover{ transform: translateY(-2px); }
+.btn.primary{ background: var(--flame); color: var(--char); font-weight: 700;}
+.btn.ghost{ border: 1px solid var(--line); color: var(--cream);}
+
+footer{
+  text-align:center;
+  padding: 32px 24px 44px;
+  font-family:'Oswald', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(244,234,217,0.4);
+  text-transform: uppercase;
+}
+
+@media (max-width: 800px){
+  .hero-grid{ grid-template-columns: 1fr; }
+  .skewer-wrap{ height: 240px; order:-1;}
+  .info-grid{ grid-template-columns: 1fr; }
+  .showcase-grid{ grid-template-columns: 1fr; padding: 24px; gap: 28px;}
+  .menu-item{ flex-wrap: wrap; }
+  .menu-dots{ display:none; }
+  .menu-name{ flex-basis: 100%; }
+  .qty-controls{ justify-content: flex-start; }
+  .cart-bar-inner{ justify-content: center; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Тез тамақтану · Шымкент</div>
+      <h1 class="brand">ШЕФ<span>DONER</span></h1>
+      <p class="tagline">Отта қуырылған ет, жаңа ингредиенттер және қолжетімді баға. Лаваш, шаурма және түрік донері — бір мекенде.</p>
+      <div class="hero-meta">
+        <div class="pill rating">★ 4.6 · 1307 баға</div>
+        <div class="pill closed"><span class="dot"></span>Дс — Жс · 10:00–03:30</div>
+        <div class="pill">7 филиал</div>
+      </div>
+      <div class="cta-strip">
+        <a class="btn primary" href="https://wa.me/77752708440" target="_blank" rel="noopener">WhatsApp-қа жазу</a>
+        <a class="btn ghost" href="tel:+77752708440">+7 775 270 8440</a>
+        <a class="btn ghost" href="https://2gis.kz/shymkent/firm/70000001100149113" target="_blank" rel="noopener">2GIS-те ашу</a>
+      </div>
+    </div>
+
+    <div class="skewer-wrap" aria-hidden="true">
+      <div class="logo-spin">
+        <img src="data:image/jpeg;base64,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" alt="Шеф Doner логотипі">
+      </div>
+      <div class="flame-glow"></div>
+    </div>
+  </div>
+</div>
+
+<section class="showcase reveal">
+  <div class="showcase-grid">
+    <div class="showcase-art" aria-hidden="true">
+      <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bread" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e8c27a"/>
+            <stop offset="100%" stop-color="#c99a52"/>
+          </linearGradient>
+          <linearGradient id="meat" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#8a3d1e"/>
+            <stop offset="50%" stop-color="#b5551f"/>
+            <stop offset="100%" stop-color="#8a3d1e"/>
+          </linearGradient>
+        </defs>
+
+        <!-- plate shadow -->
+        <ellipse cx="240" cy="345" rx="190" ry="20" fill="#000" opacity="0.35"/>
+
+        <!-- lavash cone body -->
+        <path d="M150 90 C 130 180, 150 300, 240 340 C 330 300, 350 180, 330 90 Z" fill="url(#bread)" stroke="#a97c3e" stroke-width="3"/>
+
+        <!-- cut-open flap -->
+        <path d="M150 90 C 190 60, 290 60, 330 90 C 300 110, 180 110, 150 90 Z" fill="#f2d9a0" stroke="#a97c3e" stroke-width="3"/>
+
+        <!-- meat layers -->
+        <path d="M172 130 C 210 118, 270 118, 308 130 L 300 155 C 260 145, 220 145, 180 155 Z" fill="url(#meat)"/>
+        <path d="M168 165 C 210 152, 270 152, 312 165 L 302 190 C 260 178, 220 178, 178 190 Z" fill="url(#meat)"/>
+        <path d="M170 200 C 212 188, 268 188, 310 200 L 298 222 C 258 212, 222 212, 182 222 Z" fill="url(#meat)"/>
+
+        <!-- lettuce -->
+        <path d="M165 118 q10 -14 24 -4 q8 -12 22 0 q10 -10 22 2 q10 -10 20 0 q12 -10 22 2 q10 -8 20 4 l-6 16 q-60 -10 -118 0 Z" fill="#7fa15c"/>
+
+        <!-- tomato bits -->
+        <circle cx="200" cy="175" r="7" fill="#d1502f"/>
+        <circle cx="270" cy="185" r="7" fill="#d1502f"/>
+        <circle cx="235" cy="205" r="6" fill="#d1502f"/>
+
+        <!-- sauce drizzle -->
+        <path d="M185 140 q15 8 30 -2 q15 10 30 -2 q15 8 30 -2" fill="none" stroke="#f4ead9" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
+        <path d="M180 172 q18 10 36 -2 q18 10 36 -2 q14 8 28 -1" fill="none" stroke="#f4ead9" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+
+        <!-- steam -->
+        <path d="M210 60 q-8 -20 4 -34" fill="none" stroke="#f4ead9" stroke-width="4" stroke-linecap="round" opacity="0.35"/>
+        <path d="M240 55 q-8 -22 4 -38" fill="none" stroke="#f4ead9" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
+        <path d="M270 60 q-8 -20 4 -34" fill="none" stroke="#f4ead9" stroke-width="4" stroke-linecap="round" opacity="0.35"/>
+      </svg>
+    </div>
+    <div class="showcase-text">
+      <div class="eyebrow">Отта пісірілген</div>
+      <h2 class="section-title">Жаңа піскен<br>донер</h2>
+      <p class="tagline">Жұқа кесілген ет, дәмдеуіштер мен қоспалар — бәрі көз алдыңызда дайындалады. Ешбір жартылай фабрикат жоқ, тек нағыз дәм.</p>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="section-head">
+    <div class="section-title">Мәзір</div>
+    <div class="section-note">Бағалар теңгемен</div>
+  </div>
+
+  <div class="menu-list" id="menuList">
+    <div class="menu-item" data-name="Лаваш куриный" data-price="1200">
+      <div class="menu-name">Лаваш куриный</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">1 200 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Лаваш говяжий" data-price="1350">
+      <div class="menu-name">Лаваш говяжий</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">1 350 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Лаваш двойной куриный" data-price="1600">
+      <div class="menu-name">Лаваш двойной куриный<small>Екі есе ет</small></div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">1 600 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Шаурма куриная" data-price="900">
+      <div class="menu-name">Шаурма куриная <span class="badge-hit">Хит</span></div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">900 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Шаурма куриная двойная" data-price="1200">
+      <div class="menu-name">Шаурма куриная двойная</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">1 200 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Шаурма говяжья" data-price="1100">
+      <div class="menu-name">Шаурма говяжья</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">1 100 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Гамбургер" data-price="1450">
+      <div class="menu-name">Гамбургер</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">1 450 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Турк Донер куриный" data-price="900">
+      <div class="menu-name">Турк Донер куриный</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">900 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Турк Донер говяжий" data-price="1100">
+      <div class="menu-name">Турк Донер говяжий</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">1 100 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Хотдог" data-price="900">
+      <div class="menu-name">Хотдог</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">900 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="section-head">
+    <div class="section-title">Сусындар</div>
+    <div class="section-note">0,5 л</div>
+  </div>
+
+  <div class="menu-list">
+    <div class="menu-item" data-name="Кока-кола" data-price="500">
+      <div class="menu-name">Кока-кола</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">500 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Фанта" data-price="500">
+      <div class="menu-name">Фанта</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">500 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Айран" data-price="400">
+      <div class="menu-name">Айран</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">400 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Ак Су" data-price="300">
+      <div class="menu-name">Ак Су</div>
+      <div class="menu-dots"></div>
+      <div class="menu-price">300 ₸</div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+        <span class="qty-count">0</span>
+        <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="section-head">
+    <div class="section-title">Байланыс</div>
+    <div class="section-note"></div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>Мекенжай</h3>
+      <p>Тәуке хан даңғылы, 82, 1 қабат<br>Аль-Фараби ауданы, Шымкент</p>
+    </div>
+    <div class="info-card">
+      <h3>Байланыс</h3>
+      <p>
+        <a href="tel:+77752708440">+7 775 270 8440</a><br>
+        <a href="https://instagram.com/chefdoner_shym" target="_blank" rel="noopener">Instagram</a><br>
+        <a href="https://www.tiktok.com/chefdoner_shym" target="_blank" rel="noopener">TikTok</a>
+      </p>
+    </div>
+    <div class="info-card">
+      <h3>Жұмыс уақыты</h3>
+      <p>Дс — Жс<br>10:00–03:30</p>
+    </div>
+  </div>
+</section>
+
+<footer>Шеф Doner · Дәмі жақсы, бағасы қолжетімді</footer>
+
+<div class="cart-bar" id="cartBar">
+  <div class="cart-bar-inner">
+    <div class="cart-summary">
+      <span id="cartCount">0</span> дана · Барлығы <strong id="cartTotal">0 ₸</strong>
+    </div>
+    <a class="btn primary" id="cartWhatsapp" href="#" target="_blank" rel="noopener" onclick="return sendOrder()">Тапсырыс беру · WhatsApp</a>
+  </div>
+</div>
+
+<script>
+function changeQty(btn, delta){
+  const item = btn.closest('.menu-item');
+  const countEl = item.querySelector('.qty-count');
+  let qty = parseInt(countEl.textContent, 10) + delta;
+  if(qty < 0) qty = 0;
+  countEl.textContent = qty;
+  item.classList.toggle('active', qty > 0);
+  updateCart();
+}
+
+function getCartItems(){
+  const items = [];
+  document.querySelectorAll('.menu-item').forEach(item => {
+    const qty = parseInt(item.querySelector('.qty-count').textContent, 10);
+    if(qty > 0){
+      items.push({
+        name: item.dataset.name,
+        price: parseInt(item.dataset.price, 10),
+        qty: qty
+      });
+    }
+  });
+  return items;
+}
+
+function formatPrice(n){
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₸';
+}
+
+function updateCart(){
+  const items = getCartItems();
+  const count = items.reduce((s,i)=> s + i.qty, 0);
+  const total = items.reduce((s,i)=> s + i.qty * i.price, 0);
+  document.getElementById('cartCount').textContent = count;
+  document.getElementById('cartTotal').textContent = formatPrice(total);
+  document.getElementById('cartBar').classList.toggle('visible', count > 0);
+}
+
+function sendOrder(){
+  const items = getCartItems();
+  if(items.length === 0) return false;
+  let total = 0;
+  let waLines = ['Сәлеметсіз бе! Тапсырыс бергім келеді:', ''];
+  items.forEach(i => {
+    const sum = i.qty * i.price;
+    total += sum;
+    waLines.push(`${i.name} × ${i.qty} = ${formatPrice(sum)}`);
+  });
+  waLines.push('', `Жалпы сома: ${formatPrice(total)}`);
+  const text = encodeURIComponent(waLines.join('\n'));
+  document.getElementById('cartWhatsapp').href = `https://wa.me/77752708440?text=${text}`;
+  return true;
+}
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>
